@@ -5,12 +5,14 @@ import cors from 'cors'
 import path from 'path';
 import { ConnectDB } from './config/db.js';
 import contacts from "./Modal/contacts.js"
+import { fileURLToPath } from 'url';
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
 
 ConnectDB();
 if(process.env.NODE_ENV !== 'production'){
@@ -37,9 +39,9 @@ app.get('/api/image/:id',async (req,res) => {
     });
 })
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname,"../frontend/dist")))
+    app.use(express.static(path.join(__dirname,"../../frontend/dist")))
     app.get(/.*/,(req,res) => {
-        req.sendFile(path.join(__dirname,"../frontend/dist/index.html"))
+        res.sendFile(path.join(__dirname,"../../frontend","dist","index.html"))
     })
 }
 

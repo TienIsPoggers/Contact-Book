@@ -137,8 +137,8 @@ export default function ContactPage() {
     handleGetContactByID(id);
   }, [id])
 
-  if(loading) return <div>Loading...</div>
-  if(error) return <div>Contact not found</div>
+  if(loading) return <div className='container mx-auto'><h2 className='text-center font-bold text-3xl mt-8'>Loading</h2></div>
+  if(error) return (<div className='container mx-auto'><h2 className='text-center font-bold text-3xl mt-8'>Contact Not Found</h2></div>)
   return (
     <>
       <BackToMenu />
