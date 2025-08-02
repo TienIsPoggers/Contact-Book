@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { apiGetAllContact } from '../script/api.js';
 import toast from 'react-hot-toast';
-import Contact from '../Component/contact.jsx';
+import Contact from '../Component/Contact.jsx';
 import Searchbar from '../Component/Searchbar.jsx';
 export default function HomePage() {
     const [searchbar,setSearchBar] = useState('');
