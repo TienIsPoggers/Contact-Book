@@ -24,7 +24,7 @@ app.get('/api/image/:id',async (req,res) => {
     const contact = await contacts.findById(req.params.id);
 
     //2. Kiểm tra xem Avatar có tồn tại trong contact
-    if(!contact.image) {
+    if(!contact.image || !contact.image.data) {
         return res.status(404).json({ message: "Image not found in this account "})
     }
 
@@ -32,7 +32,7 @@ app.get('/api/image/:id',async (req,res) => {
     const base64 = contact.image.data.toString("base64");
 
     // 4. Gửi kết quả sau khi convert thành công
-    res.json({
+    return res.json({
         image: base64
     });
 })

@@ -90,6 +90,7 @@ export const apiGetContactByID = async (id) => {
 }
 
 export const apiGetContactAvatarByID = async (id) => {
+    var data = null;
     try {
 
         // 1. Get api GET
@@ -100,14 +101,12 @@ export const apiGetContactAvatarByID = async (id) => {
             throw new Error(`[apiGetContactAvatarByID] Failed (${id})`)
 
         // 3. Chuyển dữ liệu sang json
-        const data = await res.json();
-
-        // 4. Trả về dữ liệu
-        return data;
+        data = await res.json();
 
     }catch(error) {
         console.error(error.message || `[apiGetContactAvatarByID] Failed (${id})`);
-        return null;
+    }finally{
+        return data
     }
 } 
 
